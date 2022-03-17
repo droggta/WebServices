@@ -21,6 +21,19 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     implementation("io.quarkus:quarkus-resteasy")
     testImplementation 'io.quarkus:quarkus-junit5'
+    // https://mvnrepository.com/artifact/soap/soap
+    implementation group: 'soap', name: 'soap', version: '2.3.1'
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+    implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    implementation group: 'org.springframework', name: 'spring-beans', version: '5.3.16'
+    // https://mvnrepository.com/artifact/javax.xml.soap/javax.xml.soap-api
+    implementation group: 'javax.xml.soap', name: 'javax.xml.soap-api', version: '1.4.0'
+
+
+
+
 }
 
 group 'org.acme'
