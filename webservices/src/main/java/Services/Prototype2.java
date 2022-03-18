@@ -7,14 +7,12 @@ import org.apache.soap.rpc.Call;
 import org.apache.soap.rpc.Parameter;
 import org.apache.soap.rpc.Response;
 
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
 
 
-
-public class BLZ {
+public class Prototype2 {
 /*
     public static void main(String[] args) throws MalformedURLException, SOAPException {
         // Erzeugen des Aufruf-Objekts
@@ -52,11 +50,15 @@ public class BLZ {
 
     public static void main(String[] args) throws MalformedURLException, SOAPException {
         // Erzeugen des Aufruf-Objekts
-        Call call = new Call(  );
+        Call call = new Call();
         //call.setTargetObjectURI("Add");
         //call.setMethodName("http://tempuri.org/Add");
-        call.setTargetObjectURI("http://tempuri.org/Add");
-        call.setMethodName("http://tempuri.org/Add");
+        //call.setTargetObjectURI("http://tempuri.org/Add");
+        //call.setTargetObjectURI("http://schemas.xmlsoap.org/soap/http");
+        //call.setMethodName("http://tempuri.org/Add");
+        call.setTargetObjectURI("CalculatorSoap");
+        call.setMethodName("Add");
+
 
         //    call.setEncodingStyleURI(Constants.NS_URI_SOAP_ENC);
         String nsUriSoapEnc = Constants.NS_URI_SOAP_ENC;
@@ -65,9 +67,9 @@ public class BLZ {
         call.setEncodingStyleURI(nsUriSoapEnc);
 
         // Setzen der Parameter
-        Vector params = new Vector(  );
+        Vector params = new Vector();
         params.addElement(new Parameter("intA", Integer.class, 1, null));
-        params.addElement(new Parameter("intB", Integer.class,2 , null));
+        params.addElement(new Parameter("intB", Integer.class, 2, null));
         call.setParams(params);
 
         // Aufrufen
@@ -77,12 +79,12 @@ public class BLZ {
         response = call.invoke(new URL("http://www.dneonline.com/calculator.asmx"), "");
         //response = call.invoke(new URL("http://www.thomas-bayer.com/axis2/services"), "");
 
-        if (!response.generatedFault(  )) {
-            Parameter returnValue = response.getReturnValue(  );
+        if (!response.generatedFault()) {
+            Parameter returnValue = response.getReturnValue();
             System.out.println("Erfolg");
         } else {
-            Fault fault = response.getFault(  );
-            System.out.println("Fehler: " + fault.getFaultString(  ));
+            Fault fault = response.getFault();
+            System.out.println("Fehler: " + fault.getFaultString());
         }
         System.out.println("ende");
 

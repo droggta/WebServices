@@ -31,6 +31,13 @@ dependencies {
     // https://mvnrepository.com/artifact/javax.xml.soap/javax.xml.soap-api
     implementation group: 'javax.xml.soap', name: 'javax.xml.soap-api', version: '1.4.0'
 
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    // https://mvnrepository.com/artifact/jakarta.xml.soap/jakarta.xml.soap-api
+    implementation group: 'jakarta.xml.soap', name: 'jakarta.xml.soap-api', version: '3.0.0-RC1'
+
+
 
 
 
