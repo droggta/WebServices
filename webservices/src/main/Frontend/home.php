@@ -13,7 +13,7 @@
 
   <div class="page_header">
     <div class="page_header_title">
-        <div class="page_header_title_icon_text">DHBWpal</div>
+        <div class="page_header_title_icon_text"><a style="text-decoration:none; color=white" href="home.php">DHBWpal</a></div>
     </div>
     <a href="home.php?p=login" class="page_header_title_profile_btn_cont">
         <img src="resources/profile.png" alt="Profil-Symbol" class="page_header_title_icon">
@@ -23,18 +23,40 @@
   <?php
   if (isset($_GET['p'])) {
       switch($_GET['p']){
+      case "create" :
+               echo
+                    '<div>
+                        <div class="createHeader">Konto erstellen</div>
+                    </div>
+                    <div id="login_card" class="card">
+                      <div class="card-body">
+                          <h2>persönliche Daten</h2>
+                          <div class="actions">
+                          <form>
+                          <div class="createInputs">
+                              <div class="createInput"><input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                              <div class="createInput"><input type="text" class="form-control" placeholder="Campus" aria-label="Username" aria-describedby="basic-addon1"></div>
+                              <div class="createInput"><input type="text" class="form-control" placeholder="Wohnort" aria-label="Username" aria-describedby="basic-addon1"></div>
+                              <div class="createBtn"><button type="submit" class="btn btn-primary">Konto erstellen</button></div>
+                              </div>
+                          </form>
+                          </div>
+                        </div>
+                   </div>';
+                      break;
       case "load" :
          echo
               '<div>
-              	    <div class="headerLine2">Konto aufladen</div>
+              	    <div class="createHeader">Konto aufladen</div>
               </div>
               <div id="login_card" class="card">
                 <div class="card-body">
-                    <h2>Was möchten Sie tun?</h2>
-                    <div class="actions mainPageBtn">
-                    <form>
-                        <input type="hidden" name="p" value="load">
-                        <div class="aufladenBtn"><button type="submit" class="btn btn-primary">Konto aufladen</button></div>
+                    <h2>Betrag eingeben</h2>
+                    <div class="actions">
+                    <form><div class="createInputs">
+                         <div class="createInput"><input type="text" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
+                        <div class="createBtn"><button type="submit" class="btn btn-primary">Konto aufladen</button></div>
+                        </div>
                     </form>
                 </div>
                 </div>
@@ -43,17 +65,18 @@
       case "send" :
           echo
                '<div>
-               	    <div class="headerLine2">Geld versenden</div>
+               	    <div class="createHeader">Geld versenden</div>
                </div>
                <div id="login_card" class="card">
                  <div class="card-body">
-                     <h2>Was möchten Sie tun?</h2>
-                     <div class="actions mainPageBtn">
-
-                     <form>
-                         <input type="hidden" name="p" value="send">
-                         <div class="aufladenBtn"><button type="submit" class="btn btn-primary">Geld versenden</button></div>
-                     </form>
+                     <h2>Überweisungsdaten eingeben</h2>
+                     <div class="actions">
+                    <form><div class="createInputs">
+                        <div class="createInput"><input type="text" class="form-control" placeholder="Benutzername Empfänger" aria-label="Empfänger" aria-describedby="basic-addon1"></div>
+                        <div class="createInput"><input type="text" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
+                        <div class="createBtn"><button type="submit" class="btn btn-primary">Betrag versenden</button></div>
+                        </div>
+                    </form>
                  </div>
                  </div>
                  </div>';
@@ -71,6 +94,10 @@
         <div class="card-body">
             <h2>Was möchten Sie tun?</h2>
             <div class="actions mainPageBtn">
+             <form>
+                <input type="hidden" name="p" value="create">
+                <div class="aufladenBtn"><button type="submit" class="btn btn-primary">Konto erstellen</button></div>
+             </form>
             <form>
                 <input type="hidden" name="p" value="load">
                 <div class="aufladenBtn"><button type="submit" class="btn btn-primary">Konto aufladen</button></div>
