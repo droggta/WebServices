@@ -1,7 +1,9 @@
 package Services;
+
 import javax.xml.soap.*;
 
-public class test2 {
+
+public class Prototype3 {
     // SAAJ - SOAP Client Testing
     public static void main(String args[]) {
         /*
@@ -16,8 +18,10 @@ public class test2 {
             Also change the contents of the method createSoapEnvelope() in this class. It constructs
              the inner part of the SOAP envelope that is actually sent.
          */
-        String soapEndpointUrl = "https://www.w3schools.com/xml/tempconvert.asmx";
-        String soapAction = "https://www.w3schools.com/xml/CelsiusToFahrenheit";
+        //String soapEndpointUrl = "https://www.w3schools.com/xml/tempconvert.asmx";
+        String soapEndpointUrl = "http://www.dneonline.com/calculator.asmx";
+        // String soapAction = "https://www.w3schools.com/xml/CelsiusToFahrenheit";
+        String soapAction = "http://tempuri.org/Add";
 
         callSoapWebService(soapEndpointUrl, soapAction);
     }
@@ -25,12 +29,16 @@ public class test2 {
     private static void createSoapEnvelope(SOAPMessage soapMessage) throws SOAPException {
         SOAPPart soapPart = soapMessage.getSOAPPart();
 
+        //String myNamespace = "myNamespace";
         String myNamespace = "myNamespace";
-        String myNamespaceURI = "https://www.w3schools.com/xml/";
+
+        //String myNamespaceURI = "https://www.w3schools.com/xml/";
+        String myNamespaceURI = "http://www.dneonline.com";
 
         // SOAP Envelope
         SOAPEnvelope envelope = soapPart.getEnvelope();
         envelope.addNamespaceDeclaration(myNamespace, myNamespaceURI);
+
 
             /*
             Constructed SOAP Request Message:
@@ -43,12 +51,20 @@ public class test2 {
                 </SOAP-ENV:Body>
             </SOAP-ENV:Envelope>
             */
-
+/*
         // SOAP Body
         SOAPBody soapBody = envelope.getBody();
         SOAPElement soapBodyElem = soapBody.addChildElement("CelsiusToFahrenheit", myNamespace);
         SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("Celsius", myNamespace);
         soapBodyElem1.addTextNode("100");
+        */
+        // SOAP Body
+        SOAPBody soapBody = envelope.getBody();
+        SOAPElement soapBodyElem = soapBody.addChildElement("Add", myNamespace);
+        SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("intA", myNamespace);
+        soapBodyElem1.addTextNode("1");
+        SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("intB", myNamespace);
+        soapBodyElem1.addTextNode("2");
     }
 
     private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
