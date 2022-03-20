@@ -181,8 +181,8 @@ table.fixed td:nth-of-type(2){
 #login_card {
     width: 25rem;
     margin-left: 40%;
-    margin-top: 8.5%;
-    margin-bottom: 8.5%;
+    margin-top: 5%;
+    margin-bottom: 7%;
     border-radius: 0.8em;
     box-shadow: 0.1em 0.1em rgb(19 26 34 / 20%);
 } 
@@ -461,10 +461,33 @@ font-size:35px;
 font-style: bold;
 }
 
+.createHeader{
+font-size:35px;
+font-weight: bold;
+margin-left: 44%;
+margin-top:3%;
+}
+
 .headerLine2{
 margin-top: 2%;
 margin-left: 30%;
 width: 60%;
 font-size:25px;
 font-style: bold;
+}
+
+.createInputs{
+margin-top: 10%;
+width: 98%;
+padding-left: 10%;
+padding-right: 10%;
+}
+
+.createBtn{
+margin-top: 12%;
+margin-left: 28%;
+}
+
+.createInput{
+margin-top: 6%;
 }
