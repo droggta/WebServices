@@ -120,6 +120,11 @@
     padding-top: 2%;
     display:flex;
 }
+
+.headerRef{
+text-decoration: none;
+color: white;
+}
  
 .filter_area{
     margin-top: 1.5%;

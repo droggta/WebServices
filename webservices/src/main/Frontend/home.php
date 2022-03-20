@@ -13,7 +13,7 @@
 
   <div class="page_header">
     <div class="page_header_title">
-        <div class="page_header_title_icon_text"><a style="text-decoration:none; color=white" href="home.php">DHBWpal</a></div>
+        <div class="page_header_title_icon_text"><a style="color: white; text-decoration: none;" class="headerRef" href="home.php">DHBWpal</a></div>
     </div>
     <a href="home.php?p=login" class="page_header_title_profile_btn_cont">
         <img src="resources/profile.png" alt="Profil-Symbol" class="page_header_title_icon">
@@ -54,6 +54,7 @@
                     <h2>Betrag eingeben</h2>
                     <div class="actions">
                     <form><div class="createInputs">
+                    <div class="createInput"><input type="text" class="form-control" placeholder="Accountname" aria-label="Betrag" aria-describedby="basic-addon1"></div>
                          <div class="createInput"><input type="text" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
                         <div class="createBtn"><button type="submit" class="btn btn-primary">Konto aufladen</button></div>
                         </div>
@@ -72,7 +73,7 @@
                      <h2>Überweisungsdaten eingeben</h2>
                      <div class="actions">
                     <form><div class="createInputs">
-                        <div class="createInput"><input type="text" class="form-control" placeholder="Benutzername Empfänger" aria-label="Empfänger" aria-describedby="basic-addon1"></div>
+                        <div class="createInput"><input type="text" class="form-control" placeholder="Accountname des Empfängers" aria-label="Empfänger" aria-describedby="basic-addon1"></div>
                         <div class="createInput"><input type="text" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
                         <div class="createBtn"><button type="submit" class="btn btn-primary">Betrag versenden</button></div>
                         </div>
