@@ -10,23 +10,14 @@ import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 @Cacheable
 public class Nutzer extends PanacheEntity {
 
+    @Column(length = 40, unique = true)
+    public String accountname;
     @Column(length = 40, unique = false)
-    public String vorname;
+    public String campus;
     @Column(length = 40, unique = false)
-    public String nachname;
+    public String wohnort;
     @Column(length = 40, unique = true)
     public String IBAN;
     @Column(length = 40, unique = false)
-    public String BLZ;
-    @Column(length = 40, unique = false)
     public double kontostand;
-    @Column(length = 40, unique = false)
-    public String strasse;
-    @Column(length = 40, unique = false)
-    public int hausnummer;
-    @Column(length = 40, unique = false)
-    public int PLZ;
-    @Column(length = 40, unique = false)
-    public String ort;
-
 }

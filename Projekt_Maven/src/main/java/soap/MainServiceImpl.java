@@ -2,10 +2,43 @@ package soap;
 
 import javax.jws.WebService;
 
-@WebService(name = "main", serviceName = "mainService")
+@WebService(endpointInterface = "soap.MainService")
 public class MainServiceImpl implements MainService{
     @Override
-    public String test(final String testData) {
-        return null;
+    public String getData(String callmethod, String recievername, String sendername, double amount, String campus, String wohnort, String iban) {
+
+        switch(callmethod){
+            case "create":
+                if (recievername != null && campus != null && wohnort != null && iban != null){
+
+                }
+                else {
+                    return "missing input";
+                }
+                break;
+            case "transfer":
+                if (recievername != null && sendername != null && amount > 0){
+
+                }
+                else {
+                    return "missing input";
+                }
+                break;
+            case "filldepot":
+                if (recievername != null && amount > 0){
+
+                }
+                else {
+                    return "missing input";
+                }
+                break;
+        }
+
+        return "success";
+    }
+
+    @Override
+    public String testreturn() {
+        return "Hi das hat funktioniert";
     }
 }

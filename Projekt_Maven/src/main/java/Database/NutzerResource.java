@@ -14,6 +14,6 @@ import java.util.List;
 public class NutzerResource {
     @GET
     public Uni<List<Nutzer>> get() {
-        return Nutzer.listAll(Sort.by("vorname"));
+        return Nutzer.listAll(Sort.by("accountname"));
     }
 }
