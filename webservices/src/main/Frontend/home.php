@@ -30,13 +30,14 @@
                     </div>
                     <div id="login_card" class="card">
                       <div class="card-body">
-                          <h2>persönliche Daten</h2>
+                          <h2>Persönliche Daten</h2>
                           <div class="actions">
                           <form>
                           <div class="createInputs">
                               <div class="createInput"><input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
                               <div class="createInput"><input type="text" class="form-control" placeholder="Campus" aria-label="Username" aria-describedby="basic-addon1"></div>
                               <div class="createInput"><input type="text" class="form-control" placeholder="Wohnort" aria-label="Username" aria-describedby="basic-addon1"></div>
+                               <div class="createInput"><input type="text" class="form-control" placeholder="Iban" aria-label="Username" aria-describedby="basic-addon1"></div>
                               <div class="createBtn"><button type="submit" class="btn btn-primary">Konto erstellen</button></div>
                               </div>
                           </form>
