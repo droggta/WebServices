@@ -21,7 +21,4 @@ public class Nutzer extends PanacheEntity {
     @Column(length = 40, unique = false)
     public double kontostand;
 
-    public static Nutzer findByName(String accountname){
-        return (Nutzer) find("accountname", accountname).firstResult();
-    }
 }

@@ -4,6 +4,7 @@ import Database.Nutzer;
 import Database.NutzerResource;
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.inject.Inject;
 import javax.ws.rs.POST;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 
 @Path("/create")
+@RegisterRestClient
 public class CreateService {
 
     @Inject
@@ -19,7 +21,7 @@ public class CreateService {
 
     @POST
     public Uni<Response> create(String recievername, String campus, String wohnort, String iban) {
+        //return userresource.create("{'recievername':'campus':'wohnort':'iban'}");
         return null;
-        //return userresource.create("{'recievername':'campus':'wohnort':'iban'}"9);
     }
 }
