@@ -3,6 +3,7 @@ package rest;
 import Database.Nutzer;
 import Database.NutzerResource;
 import Services.ExternerRechenservice;
+import io.smallrye.mutiny.Multi;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.inject.Inject;
@@ -17,8 +18,8 @@ public class TransferService {
 
     @POST
     public String transfer(String recievername, String sendername, double amount) {
-        Nutzer reciever = userresource.findByName(recievername);
-        Nutzer sender = userresource.findByName(sendername);
+        Nutzer reciever = (Nutzer) userresource.findByName(recievername);
+        Nutzer sender = (Nutzer) userresource.findByName(sendername);
         ExternerRechenservice rechner = new ExternerRechenservice();
 
         if(sender.kontostand >= amount){

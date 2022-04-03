@@ -22,7 +22,7 @@ public class FillDepotService {
 
     @POST
     public String fill(String recievername, double amount) {
-        Nutzer reciever = userresource.findByName(recievername);
+        Nutzer reciever = (Nutzer) userresource.findByName(recievername);
         ExternerRechenservice rechner = new ExternerRechenservice();
 
         try {

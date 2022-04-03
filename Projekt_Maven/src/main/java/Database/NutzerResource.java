@@ -23,7 +23,7 @@ public class NutzerResource {
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/getSingle/{id}")
     public Uni<Nutzer> getSingle(Long id) {
         return Nutzer.findById(id);
     }
@@ -35,7 +35,8 @@ public class NutzerResource {
     }
 
     @GET
-    public Nutzer findByName(String accountname){
-        return (Nutzer) Nutzer.find("accountname", accountname).firstResult();
+    @Path("/findbyName/{accountname}")
+    public Uni<Nutzer> findByName(String accountname){
+        return Nutzer.find("accountname", accountname).firstResult();
     }
 }

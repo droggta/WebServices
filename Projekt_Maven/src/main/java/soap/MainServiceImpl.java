@@ -25,30 +25,30 @@ public class MainServiceImpl implements MainService{
             case "create":
                 if (recievername != null && campus != null && wohnort != null && iban != null){
                     createService.create(recievername, campus, wohnort, iban);
+                    return "success";
                 }
                 else {
                     return "missing input";
                 }
-                break;
             case "transfer":
                 if (recievername != null && sendername != null && amount > 0){
                     transferService.transfer(recievername, sendername, amount);
+                    return "success";
                 }
                 else {
                     return "missing input";
                 }
-                break;
             case "filldepot":
                 if (recievername != null && amount > 0){
-
+                    fillService.fill(recievername, amount);
+                    return "success";
                 }
                 else {
                     return "missing input";
                 }
-                break;
+            default:
+                return "error";
         }
-
-        return "success";
     }
 
     @Override
