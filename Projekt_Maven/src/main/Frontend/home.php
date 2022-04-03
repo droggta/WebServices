@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="stylesheet.css">
     <script type="text/javascript" src="resources/bootstrap/jquery/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.css">
     <title>DHBWpal</title>
 
     <script type="text/javascript">
-            function createAccount() {
+            function createAccount(callback) {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.open("POST", 'http://localhost:8080/soap/mainService', true);
 
@@ -34,7 +35,7 @@
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4) {
                         if (xmlhttp.status == 200) {
-                            alert(xmlhttp.responseText);
+                            callback(xmlhttp.responseText);
                         }
                     }
                 }
@@ -42,7 +43,7 @@
                 xmlhttp.send(sr);
             }
 
-             function sendMoney() {
+             function sendMoney(callback) {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
@@ -65,7 +66,7 @@
                     xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4) {
                             if (xmlhttp.status == 200) {
-                                alert(xmlhttp.responseText);
+                                callback(xmlhttp.responseText);
                                 }
                             }
                         }
@@ -74,7 +75,7 @@
                         xmlhttp.res
                     }
 
-                    function loadAccount() {
+                    function loadAccount(callback) {
                         var xmlhttp = new XMLHttpRequest();
                         xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
@@ -97,13 +98,38 @@
                                 xmlhttp.onreadystatechange = function () {
                                 if (xmlhttp.readyState == 4) {
                                     if (xmlhttp.status == 200) {
-                                        alert(xmlhttp.responseText);
+                                        callback(xmlhttp.responseText);
                                         }
                                     }
                                 }
                                 xmlhttp.setRequestHeader('Content-Type', 'text/xml');
                                 xmlhttp.send(sr);
                                 }
+
+
+
+             function callbackCreate(text){
+                document.getElementById("createInputs").style.display = 'none';
+                document.getElementById("createAnswer").style.display = 'inline';
+                document.getElementById("createAnswerUsername").value = document.getElementById("createUsername").value;
+            }
+
+            function callbackLoad(text){
+
+                document.getElementById("loadInputs").style.display = 'none';
+                document.getElementById("loadAnswer").style.display = 'inline';
+                document.getElementById("loadAnswerUsername").value = document.getElementById("loadUsername").value;
+                document.getElementById("loadAnswerValue").value = $(text).find("kontostand").text();
+            }
+
+            function callbackSend(text){
+            alert("jojo");
+            document.getElementById("sendInputs").style.display = 'none';
+            document.getElementById("sendAnswer").style.display = 'inline';
+            document.getElementById("sendAnswerUsername").value = document.getElementById("sendSender").value;
+            document.getElementById("sendAnswerValue").value = document.getElementById("sendValue").value;
+            document.getElementById("sendAnswerAccountValue") = $(text).find("kontostand").text();
+            }
 
         </script>
 
@@ -129,37 +155,65 @@
                         <div class="createHeader">Konto erstellen</div>
                     </div>
                     <div id="login_card" class="card">
-                      <div class="card-body">
+                      <div id="createInputs" class="card-body">
                           <h2>Persönliche Daten</h2>
                           <div class="actions">
                           <form>
-                          <div class="createInputs">
+                            <div class="createInputs">
                               <div class="createInput"><input id="createUsername" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
                               <div class="createInput"><input id="createCampus" type="text" class="form-control" placeholder="Campus" aria-label="Username" aria-describedby="basic-addon1"></div>
                               <div class="createInput"><input id="createCity" type="text" class="form-control" placeholder="Wohnort" aria-label="Username" aria-describedby="basic-addon1"></div>
                                <div class="createInput"><input id="createIban" type="text" class="form-control" min-length="12" max-length="12" placeholder="Iban" aria-label="Username" aria-describedby="basic-addon1"></div>
-                              <div class="createBtn"><button type="button" class="btn btn-primary" onclick="createAccount()">Konto erstellen</button></div>
-                              </div>
+                              <div class="createBtn"><button type="button" class="btn btn-primary" onclick="createAccount(callbackCreate)">Konto erstellen</button></div>
+                            </div>
                           </form>
-                          </div>
+                         </div>
                         </div>
-                   </div>';
-                      break;
+                        <div id="createAnswer" class="card-body" style="display:none;">
+                        <h2>Vielen Dank</h2>
+                        <div class="actions">
+                        <form>
+                        <div class="createInputs">
+                        Ihr Account mit dem Benutzernamen </br>
+                        <div class="createInput"><input id="createAnswerUsername" type="text" class="form-control" readonly placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                        </br>wurde erfolgreich erstellt.</br> Sie können nun Transaktionen druchführen.
+                        <div class="createBtn"><button type="submit" class="btn btn-primary">zur Startseite</button></div>
+                        </div>
+                        </form>
+                        </div>
+                        </div>
+                   </div>
+                   ';
+                   break;
       case "load" :
          echo
               '<div>
               	    <div class="createHeader">Konto aufladen</div>
               </div>
               <div id="login_card" class="card">
-                <div class="card-body">
+                <div id="loadInputs" class="card-body">
                     <h2>Betrag eingeben</h2>
                     <div class="actions">
                     <form><div class="createInputs">
                     <div class="createInput"><input type="text" id="loadAccountname" class="form-control" placeholder="Accountname" aria-label="Betrag" aria-describedby="basic-addon1"></div>
                          <div class="createInput"><input type="text" id="loadValue" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
-                        <div class="createBtn"><button type="button" onclick="loadAccount()" class="btn btn-primary">Konto aufladen</button></div>
+                        <div class="createBtn"><button type="button" onclick="loadAccount(callbackLoad)" class="btn btn-primary">Konto aufladen</button></div>
                         </div>
                     </form>
+                </div>
+                </div>
+                <div id="loadAnswer" class="card-body" style="display:none;">
+                <h2>Vielen Dank</h2>
+                <div class="actions">
+                <form>
+                <div class="createInputs">
+                Ihr Account mit dem Benutzernamen </br>
+                <div class="createInput"><input id="loadAnswerUsername" type="text" class="form-control" readonly placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                </br>wurde erfolgreich aufgeladen.</br> Der aktuelle Kontostand beträgt:</br>
+                <div class="createInput"><input id="loadAnswerValue" type="text" class="form-control" readonly placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                <div class="createBtn"><button type="submit" class="btn btn-primary">zur Startseite</button></div>
+                </div>
+                </form>
                 </div>
                 </div>
                 </div>';
@@ -170,18 +224,34 @@
                	    <div class="createHeader">Geld versenden</div>
                </div>
                <div id="login_card" class="card">
-                 <div class="card-body">
+                 <div id="sendInputs" class="card-body">
                      <h2>Überweisungsdaten eingeben</h2>
                      <div class="actions">
                     <form><div class="createInputs">
                     <div class="createInput"><input type="text" id="sendSender" class="form-control" placeholder="Accountname des Senders" aria-label="Sender" aria-describedby="basic-addon1"></div>
                         <div class="createInput"><input type="text" id="sendReceiver" class="form-control" placeholder="Accountname des Empfängers" aria-label="Empfänger" aria-describedby="basic-addon1"></div>
                         <div class="createInput"><input type="text" id="sendValue" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
-                        <div class="createBtn"><button type="button" class="btn btn-primary" onclick="sendMoney()">Betrag versenden</button></div>
+                        <div class="createBtn"><button type="button" class="btn btn-primary" onclick="sendMoney(callbackSend)">Betrag versenden</button></div>
                         </div>
                     </form>
                  </div>
                  </div>
+                  <div id="sendAnswer" class="card-body" style="display:none;">
+                  <h2>Vielen Dank</h2>
+                  <div class="actions">
+                  <form>
+                  <div class="createInputs">
+                  Ihrem Account mit dem Benutzernamen </br>
+                  <div class="createInput"><input id="sendAnswerUsername" type="text" class="form-control" readonly placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                  </br>wurde erfolgreich folgende Summe abgezogen:</br>
+                  <div class="createInput"><input id="sendAnswerValue" type="text" class="form-control" readonly placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                  Der aktuelle Kontostand beträgt:</br>
+                  <div class="createInput"><input id="sendAnswerAccountValue" type="text" class="form-control" readonly placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                  <div class="createBtn"><button type="submit" class="btn btn-primary">zur Startseite</button></div>
+                  </div>
+                  </form>
+                  </div>
+                  </div>
                  </div>';
                   break;
 
