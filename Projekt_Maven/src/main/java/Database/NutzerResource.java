@@ -1,6 +1,7 @@
 package Database;
 
 import Services.ExternerBLZKonverter;
+import configuration.Configuration;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
@@ -18,19 +19,18 @@ import java.util.List;
 @RegisterRestClient
 public class NutzerResource{
 
-    ArrayList<Nutzer> users = new ArrayList<Nutzer>();
     @GET
     @Path("/create")
     public String create(String accountname, String campus, String wohnort, String iban) {
         Nutzer user = new Nutzer();
-        user.setId(users.stream().count());
+        user.setId(Configuration.instance.users.stream().count());
         user.setAccountname(accountname);
         user.setCampus(campus);
         user.setWohnort(wohnort);
         user.setIBAN(iban);
         char[] ibanarray = iban.toCharArray();
         String blz = "";
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 8; i++){
             blz += ibanarray[i+4];
         }
         user.setBLZ(blz);
@@ -40,13 +40,18 @@ public class NutzerResource{
         } catch (Exception e) {
 
         }
-        users.add(user);
-        return "init ok";
+        Configuration.instance.users.add(user);
+        return user.getAccountname();
     }
 
     @GET
     @Path("/findbyName/{name}")
     public Nutzer findByName(String name){
-        return users.stream().filter(user -> user.getAccountname().equals(name)).findFirst().get();
+        for(Nutzer user : Configuration.instance.users){
+            if(user.getAccountname() != null && user.getAccountname().equals(name)) {
+                return user;
+            }
+        }
+        return null;
     }
 }

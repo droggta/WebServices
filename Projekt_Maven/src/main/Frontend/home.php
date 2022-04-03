@@ -11,28 +11,27 @@
     <title>DHBWpal</title>
 
     <script type="text/javascript">
-            function createAccount(callback) {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open("POST", 'http://localhost:8080/soap/mainService', true);
+        function createAccount(callback) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", 'http://10.50.15.51:9000/soap/mainService', true);
+            var sr =
+                '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
+                    '<soapenv:Header/>'+
+                    '<soapenv:Body>'+
+                        '<soap:getData>'+
+                            '<callmethod>create</callmethod>'+
+                            '<recievername>'+ document.getElementById("createUsername").value+'</recievername>'+
+                            '<sendername>'+ document.getElementById("createUsername").value+'</sendername>'+
+                            '<amount>0</amount>'+
+                            '<campus>'+ document.getElementById("createCampus").value+'</campus>'+
+                            '<wohnort>'+ document.getElementById("createCity").value+'</wohnort>'+
+                            '<iban>'+ document.getElementById("createIban").value+'</iban>'+
+                        '</soap:getData>'+
+                    '</soapenv:Body>'+
+                '</soapenv:Envelope>';
 
-                var sr =
-                   '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
-                        '<soapenv:Header/>'+
-                            '<soapenv:Body>'+
-                                '<soap:getData>'+
-                                    '<callmethod>create</callmethod>'+
-                                    '<recievername>'+ document.getElementById("createUsername").value+'</recievername>'+
-                                    '<sendername>'+ document.getElementById("createUsername").value+'</sendername>'+
-                                    '<amount>0</amount>'+
-                                    '<campus>'+ document.getElementById("createCampus").value+'</campus>'+
-                                    '<wohnort>'+ document.getElementById("createCity").value+'</wohnort>'+
-                                    '<iban>'+ document.getElementById("createIban").value+'</iban>'+
-                                '</soap:getData>'+
-                            '</soapenv:Body>'+
-                        '</soapenv:Envelope>';
 
-
-                xmlhttp.onreadystatechange = function () {
+            xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4) {
                         if (xmlhttp.status == 200) {
                             callback(xmlhttp.responseText);
@@ -45,7 +44,7 @@
 
              function sendMoney(callback) {
                 var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
+                xmlhttp.open('POST', 'http://10.50.15.51:9000/soap/mainService', true);
 
                 var sr =
                     '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
@@ -77,7 +76,7 @@
 
                     function loadAccount(callback) {
                         var xmlhttp = new XMLHttpRequest();
-                        xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
+                        xmlhttp.open('POST', 'http://10.50.15.51:9000/soap/mainService', true);
 
                         var sr =
                             '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
@@ -118,17 +117,16 @@
 
                 document.getElementById("loadInputs").style.display = 'none';
                 document.getElementById("loadAnswer").style.display = 'inline';
-                document.getElementById("loadAnswerUsername").value = document.getElementById("loadUsername").value;
+                document.getElementById("loadAnswerUsername").value = document.getElementById("loadAccountname").value;
                 document.getElementById("loadAnswerValue").value = $(text).find("kontostand").text();
             }
 
             function callbackSend(text){
-            alert("jojo");
             document.getElementById("sendInputs").style.display = 'none';
             document.getElementById("sendAnswer").style.display = 'inline';
             document.getElementById("sendAnswerUsername").value = document.getElementById("sendSender").value;
             document.getElementById("sendAnswerValue").value = document.getElementById("sendValue").value;
-            document.getElementById("sendAnswerAccountValue") = $(text).find("kontostand").text();
+            document.getElementById("sendAnswerAccountValue").value = $(text).find("kontostand").text();
             }
 
         </script>

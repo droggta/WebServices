@@ -24,8 +24,7 @@ public class MainServiceImpl implements MainService{
         switch(callmethod){
             case "create":
                 if (recievername != null && campus != null && wohnort != null && iban != null){
-                    createService.create(recievername, campus, wohnort, iban);
-                    return "success";
+                    return createService.create(recievername, campus, wohnort, iban);
                 }
                 else {
                     return "missing input";
