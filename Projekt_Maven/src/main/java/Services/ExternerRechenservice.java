@@ -36,18 +36,4 @@ public class ExternerRechenservice extends ExternService {
                 "</soapenv:Envelope>";
         return xml;
     }
-
-
-    public static void main(String args[]) {
-        ExternerRechenservice e = new ExternerRechenservice();
-        try {
-            System.out.println(e.add(5.75, 4.25));
-            System.out.println(e.add(5, 4.25));
-            System.out.println(e.subtract(5.75, 4.25));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-    }
-
 }

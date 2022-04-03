@@ -1,6 +1,5 @@
 package Database;
 
-import Test.Fruit;
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.panache.common.Sort;
 import io.smallrye.mutiny.Uni;

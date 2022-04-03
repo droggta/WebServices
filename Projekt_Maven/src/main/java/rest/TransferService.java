@@ -2,6 +2,7 @@ package rest;
 
 import Database.Nutzer;
 import Database.NutzerResource;
+import Services.ExternerRechenservice;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.inject.Inject;
@@ -18,10 +19,15 @@ public class TransferService {
     public String transfer(String recievername, String sendername, double amount) {
         Nutzer reciever = userresource.findByName(recievername);
         Nutzer sender = userresource.findByName(sendername);
+        ExternerRechenservice rechner = new ExternerRechenservice();
 
         if(sender.kontostand >= amount){
-            sender.kontostand -= amount;
-            reciever.kontostand += amount;
+            try {
+                sender.kontostand = rechner.subtract(sender.kontostand, amount);
+                reciever.kontostand = rechner.add(reciever.kontostand, amount);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return "success";
         }
         else{
