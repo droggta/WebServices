@@ -20,8 +20,4 @@ public class Nutzer extends PanacheEntity {
     public String IBAN;
     @Column(length = 40, unique = false)
     public double kontostand;
-
-    public static Nutzer findByName(String accountname){
-        return (Nutzer) find("accountname", accountname).firstResult();
-    }
 }

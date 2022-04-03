@@ -24,13 +24,4 @@ public class ExternerBLZKonverter extends ExternService {
         return new BankInfo(description, bic, city, Integer.parseInt(plz));
 
     }
-
-    public static void main(String[] args) {
-        try {
-            ExternerBLZKonverter kon = new ExternerBLZKonverter();
-            System.out.println(kon.getBLZInfos(53093200).toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

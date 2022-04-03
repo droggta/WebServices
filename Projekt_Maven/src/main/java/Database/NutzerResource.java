@@ -1,9 +1,9 @@
 package Database;
 
-import Test.Fruit;
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.panache.common.Sort;
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
@@ -15,6 +15,7 @@ import java.util.List;
 
 @Path("/user")
 @ApplicationScoped
+@RegisterRestClient
 public class NutzerResource {
     @GET
     public Uni<List<Nutzer>> get() {
@@ -31,5 +32,10 @@ public class NutzerResource {
     public Uni<Response> create(Nutzer nutzer) {
         return Panache.<Nutzer>withTransaction(nutzer::persist)
                 .onItem().transform(inserted -> Response.created(URI.create("/user/" + inserted.id)).build());
+    }
+
+    @GET
+    public Nutzer findByName(String accountname){
+        return (Nutzer) Nutzer.find("accountname", accountname).firstResult();
     }
 }
