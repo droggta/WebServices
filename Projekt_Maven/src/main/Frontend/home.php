@@ -12,23 +12,23 @@
     <script type="text/javascript">
             function createAccount() {
                 var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
+                xmlhttp.open("POST", 'http://localhost:8080/soap/mainService', true);
 
                 var sr =
-                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
-                       '<soapenv:Header/>'+
-                       '<soapenv:Body>'+
-                          '<soap:getData>'+
-                             '<callmethod>create</callmethod>'+
-                             '<recievername>'+ document.getElementById("createUsername").value+'</recievername>'+
-                             '<sendername>'+ document.getElementById("createUsername").value+'</sendername>'+
-                             '<amount>0</amount>'+
-                             '<Campus>'+ document.getElementById("createCampus").value+'</Campus>'+
-                             '<Wohnort>'+ document.getElementById("createCity").value+'</Wohnort>'+
-                             '<iban>'+ document.getElementById("createIban").value+'</iban>'+
-                          '</soap:getData>'+
-                       '</soapenv:Body>'+
-                    '</soapenv:Envelope>';
+                  '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
+                      '<soapenv:Header/>'+
+                      '<soapenv:Body>'+
+                        '<soap:getData>'+
+                            '<callmethod>create</callmethod>'+
+                            '<recievername>test</recievername>'+
+                            '<sendername>test1</sendername>'+
+                            '<amount>0</amount>'+
+                            '<Campus>mos</Campus>'+
+                            '<Wohnort>de</Wohnort>'+
+                            '<iban>111111111111</iban>'+
+                         '</soap:getData>'+
+                      '</soapenv:Body>'+
+                   '</soapenv:Envelope>';
 
 
                 xmlhttp.onreadystatechange = function () {
@@ -38,7 +38,7 @@
                         }
                     }
                 }
-                xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+                xmlhttp.setRequestHeader('Content-Type', 'text/xml;charset=UTF-8');
                 xmlhttp.send(sr);
             }
 
@@ -47,7 +47,7 @@
                 xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
                 var sr =
-                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
+                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/"/>'+
                         '<soapenv:Header/>'+
                             '<soapenv:Body>'+
                                 '<soap:getData>'+
@@ -78,7 +78,7 @@
                         xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
                         var sr =
-                            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
+                            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/"/>'+
                                 '<soapenv:Header/>'+
                                     '<soapenv:Body>'+
                                         '<soap:getData>'+
@@ -137,7 +137,7 @@
                               <div class="createInput"><input id="createCampus" type="text" class="form-control" placeholder="Campus" aria-label="Username" aria-describedby="basic-addon1"></div>
                               <div class="createInput"><input id="createCity" type="text" class="form-control" placeholder="Wohnort" aria-label="Username" aria-describedby="basic-addon1"></div>
                                <div class="createInput"><input id="createIban" type="text" class="form-control" min-length="12" max-length="12" placeholder="Iban" aria-label="Username" aria-describedby="basic-addon1"></div>
-                              <div class="createBtn"><button type="submit" class="btn btn-primary" onclick="createAccount()">Konto erstellen</button></div>
+                              <div class="createBtn"><button type="button" class="btn btn-primary" onclick="createAccount()">Konto erstellen</button></div>
                               </div>
                           </form>
                           </div>
@@ -156,7 +156,7 @@
                     <form><div class="createInputs">
                     <div class="createInput"><input type="text" id="loadAccountname" class="form-control" placeholder="Accountname" aria-label="Betrag" aria-describedby="basic-addon1"></div>
                          <div class="createInput"><input type="text" id="loadValue" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
-                        <div class="createBtn"><button type="submit" onclick="loadAccount()" class="btn btn-primary">Konto aufladen</button></div>
+                        <div class="createBtn"><button type="button" onclick="loadAccount()" class="btn btn-primary">Konto aufladen</button></div>
                         </div>
                     </form>
                 </div>
