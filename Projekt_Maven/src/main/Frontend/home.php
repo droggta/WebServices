@@ -12,7 +12,7 @@
     <script type="text/javascript">
             function createAccount() {
                 var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open('POST', 'https://somesoapurl.com/', true);
+                xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
                 var sr =
                     '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
@@ -44,7 +44,7 @@
 
              function sendMoney() {
                 var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open('POST', 'https://somesoapurl.com/', true);
+                xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
                 var sr =
                     '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
@@ -75,7 +75,7 @@
 
                     function loadAccount() {
                         var xmlhttp = new XMLHttpRequest();
-                        xmlhttp.open('POST', 'https://somesoapurl.com/', true);
+                        xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
                         var sr =
                             '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
@@ -176,7 +176,7 @@
                     <div class="createInput"><input type="text" id="sendSender" class="form-control" placeholder="Accountname des Senders" aria-label="Sender" aria-describedby="basic-addon1"></div>
                         <div class="createInput"><input type="text" id="sendReceiver" class="form-control" placeholder="Accountname des Empfängers" aria-label="Empfänger" aria-describedby="basic-addon1"></div>
                         <div class="createInput"><input type="text" id="sendValue" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
-                        <div class="createBtn"><button type="submit" class="btn btn-primary" onclick="sendMoney()">Betrag versenden</button></div>
+                        <div class="createBtn"><button type="button" class="btn btn-primary" onclick="sendMoney()">Betrag versenden</button></div>
                         </div>
                     </form>
                  </div>
