@@ -4,10 +4,109 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
-    <script type="text/javascript" src="/bootstrap/jquery/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="resources/bootstrap/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.css">
     <title>DHBWpal</title>
+
+    <script type="text/javascript">
+            function createAccount() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open('POST', 'https://somesoapurl.com/', true);
+
+                var sr =
+                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
+                       '<soapenv:Header/>'+
+                       '<soapenv:Body>'+
+                          '<soap:getData>'+
+                             '<callmethod>create</callmethod>'+
+                             '<recievername>'+ document.getElementById("createUsername").value+'</recievername>'+
+                             '<sendername>'+ document.getElementById("createUsername").value+'</sendername>'+
+                             '<amount>0</amount>'+
+                             '<Campus>'+ document.getElementById("createCampus").value+'</Campus>'+
+                             '<Wohnort>'+ document.getElementById("createCity").value+'</Wohnort>'+
+                             '<iban>'+ document.getElementById("createIban").value+'</iban>'+
+                          '</soap:getData>'+
+                       '</soapenv:Body>'+
+                    '</soapenv:Envelope>';
+
+
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4) {
+                        if (xmlhttp.status == 200) {
+                            alert(xmlhttp.responseText);
+                        }
+                    }
+                }
+                xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+                xmlhttp.send(sr);
+            }
+
+             function sendMoney() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open('POST', 'https://somesoapurl.com/', true);
+
+                var sr =
+                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
+                        '<soapenv:Header/>'+
+                            '<soapenv:Body>'+
+                                '<soap:getData>'+
+                                '<callmethod>transfer</callmethod>'+
+                                '<recievername>'+ document.getElementById("sendReceiver").value+'</recievername>'+
+                                '<sendername>'+ document.getElementById("sendSender").value+'</sendername>'+
+                                '<amount>'+ document.getElementById("sendValue").value+'</amount>'+
+                                '<Campus>?</Campus>'+
+                                '<Wohnort>?</Wohnort>'+
+                                '<iban>?</iban>'+
+                            '</soap:getData>'+
+                        '</soapenv:Body>'+
+                    '</soapenv:Envelope>';
+
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4) {
+                            if (xmlhttp.status == 200) {
+                                alert(xmlhttp.responseText);
+                                }
+                            }
+                        }
+                        xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+                        xmlhttp.send(sr);
+                    }
+
+                    function loadAccount() {
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.open('POST', 'https://somesoapurl.com/', true);
+
+                        var sr =
+                            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/%22%3E"/>'+
+                                '<soapenv:Header/>'+
+                                    '<soapenv:Body>'+
+                                        '<soap:getData>'+
+                                            '<callmethod>filldepot</callmethod>'+
+                                            '<recievername>'+ document.getElementById("loadAccountname").value+'</recievername>'+
+                                            '<sendername>'+ document.getElementById("loadAccountname").value+'</sendername>'+
+                                            '<amount>'+ document.getElementById("loadValue").value+'</amount>'+
+                                            '<Campus>?</Campus>'+
+                                            '<Wohnort>?</Wohnort>'+
+                                            '<iban>?</iban>'+
+                                        '</soap:getData>'+
+                                    '</soapenv:Body>'+
+                                '</soapenv:Envelope>';
+
+                                xmlhttp.onreadystatechange = function () {
+                                if (xmlhttp.readyState == 4) {
+                                    if (xmlhttp.status == 200) {
+                                        alert(xmlhttp.responseText);
+                                        }
+                                    }
+                                }
+                                xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+                                xmlhttp.send(sr);
+                                }
+
+        </script>
+
+
   </head>
   <body>
 
@@ -34,11 +133,11 @@
                           <div class="actions">
                           <form>
                           <div class="createInputs">
-                              <div class="createInput"><input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
-                              <div class="createInput"><input type="text" class="form-control" placeholder="Campus" aria-label="Username" aria-describedby="basic-addon1"></div>
-                              <div class="createInput"><input type="text" class="form-control" placeholder="Wohnort" aria-label="Username" aria-describedby="basic-addon1"></div>
-                               <div class="createInput"><input type="text" class="form-control" placeholder="Iban" aria-label="Username" aria-describedby="basic-addon1"></div>
-                              <div class="createBtn"><button type="submit" class="btn btn-primary">Konto erstellen</button></div>
+                              <div class="createInput"><input id="createUsername" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"></div>
+                              <div class="createInput"><input id="createCampus" type="text" class="form-control" placeholder="Campus" aria-label="Username" aria-describedby="basic-addon1"></div>
+                              <div class="createInput"><input id="createCity" type="text" class="form-control" placeholder="Wohnort" aria-label="Username" aria-describedby="basic-addon1"></div>
+                               <div class="createInput"><input id="createIban" type="text" class="form-control" min-length="12" max-length="12" placeholder="Iban" aria-label="Username" aria-describedby="basic-addon1"></div>
+                              <div class="createBtn"><button type="submit" class="btn btn-primary" onclick="createAccount()">Konto erstellen</button></div>
                               </div>
                           </form>
                           </div>
@@ -55,9 +154,9 @@
                     <h2>Betrag eingeben</h2>
                     <div class="actions">
                     <form><div class="createInputs">
-                    <div class="createInput"><input type="text" class="form-control" placeholder="Accountname" aria-label="Betrag" aria-describedby="basic-addon1"></div>
-                         <div class="createInput"><input type="text" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
-                        <div class="createBtn"><button type="submit" class="btn btn-primary">Konto aufladen</button></div>
+                    <div class="createInput"><input type="text" id="loadAccountname" class="form-control" placeholder="Accountname" aria-label="Betrag" aria-describedby="basic-addon1"></div>
+                         <div class="createInput"><input type="text" id="loadValue" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
+                        <div class="createBtn"><button type="submit" onclick="loadAccount()" class="btn btn-primary">Konto aufladen</button></div>
                         </div>
                     </form>
                 </div>
@@ -74,9 +173,10 @@
                      <h2>Überweisungsdaten eingeben</h2>
                      <div class="actions">
                     <form><div class="createInputs">
-                        <div class="createInput"><input type="text" class="form-control" placeholder="Accountname des Empfängers" aria-label="Empfänger" aria-describedby="basic-addon1"></div>
-                        <div class="createInput"><input type="text" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
-                        <div class="createBtn"><button type="submit" class="btn btn-primary">Betrag versenden</button></div>
+                    <div class="createInput"><input type="text" id="sendSender" class="form-control" placeholder="Accountname des Senders" aria-label="Sender" aria-describedby="basic-addon1"></div>
+                        <div class="createInput"><input type="text" id="sendReceiver" class="form-control" placeholder="Accountname des Empfängers" aria-label="Empfänger" aria-describedby="basic-addon1"></div>
+                        <div class="createInput"><input type="text" id="sendValue" class="form-control" placeholder="Betrag" aria-label="Betrag" aria-describedby="basic-addon1"></div>
+                        <div class="createBtn"><button type="submit" class="btn btn-primary" onclick="sendMoney()">Betrag versenden</button></div>
                         </div>
                     </form>
                  </div>
