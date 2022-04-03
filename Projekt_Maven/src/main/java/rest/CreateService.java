@@ -25,16 +25,7 @@ public class CreateService {
     @POST
     public Uni<Response> create(String recievername, String campus, String wohnort, String iban) {
 
-        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-        try {
-            HttpPost request = new HttpPost(Configuration.instance.baseURL + "user");
-            StringEntity params = new StringEntity("{\"recievername\":" + recievername + ",\"campus\":" + campus + ",\"wohnort\":" + wohnort + ",\"iban\":" + iban + "} ");
-            request.addHeader("content-type", "application/json");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        userresource.create(recievername, campus, wohnort, iban);
 
         return null;
     }

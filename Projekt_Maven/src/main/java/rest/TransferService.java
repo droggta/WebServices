@@ -18,8 +18,8 @@ public class TransferService {
 
     @POST
     public String transfer(String recievername, String sendername, double amount) {
-        Nutzer reciever = (Nutzer) userresource.findByName(recievername);
-        Nutzer sender = (Nutzer) userresource.findByName(sendername);
+        Nutzer reciever = userresource.findByName(recievername);
+        Nutzer sender = userresource.findByName(sendername);
         ExternerRechenservice rechner = new ExternerRechenservice();
 
         if(sender.kontostand >= amount){
@@ -29,7 +29,7 @@ public class TransferService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "success";
+            return String.valueOf(sender.kontostand);
         }
         else{
             return "ERROR: Kontostand nicht ausreichend";

@@ -22,7 +22,7 @@ public class FillDepotService {
 
     @POST
     public String fill(String recievername, double amount) {
-        Nutzer reciever = (Nutzer) userresource.findByName(recievername);
+        Nutzer reciever = userresource.findByName(recievername);
         ExternerRechenservice rechner = new ExternerRechenservice();
 
         try {
@@ -31,6 +31,6 @@ public class FillDepotService {
             e.printStackTrace();
         }
 
-        return "success";
+        return String.valueOf(reciever.kontostand);
     }
 }

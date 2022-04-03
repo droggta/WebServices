@@ -13,7 +13,7 @@ parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public interface MainService {
 
     @WebMethod
-    @WebResult(name = "Success")
+    @WebResult(name = "kontostand")
     String getData(@WebParam(name = "callmethod")  @XmlElement(required = true) String callmethod,
                    @WebParam(name = "recievername")  @XmlElement(required = true) String recievername,
                    @WebParam(name = "sendername")  @XmlElement(required = true) String sendername,

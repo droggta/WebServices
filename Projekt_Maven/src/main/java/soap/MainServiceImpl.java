@@ -32,16 +32,14 @@ public class MainServiceImpl implements MainService{
                 }
             case "transfer":
                 if (recievername != null && sendername != null && amount > 0){
-                    transferService.transfer(recievername, sendername, amount);
-                    return "success";
+                    return transferService.transfer(recievername, sendername, amount);
                 }
                 else {
                     return "missing input";
                 }
             case "filldepot":
                 if (recievername != null && amount > 0){
-                    fillService.fill(recievername, amount);
-                    return "success";
+                    return fillService.fill(recievername, amount);
                 }
                 else {
                     return "missing input";
