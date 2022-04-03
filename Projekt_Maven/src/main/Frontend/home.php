@@ -15,20 +15,20 @@
                 xmlhttp.open("POST", 'http://localhost:8080/soap/mainService', true);
 
                 var sr =
-                  '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
-                      '<soapenv:Header/>'+
-                      '<soapenv:Body>'+
-                        '<soap:getData>'+
-                            '<callmethod>create</callmethod>'+
-                            '<recievername>test</recievername>'+
-                            '<sendername>test1</sendername>'+
-                            '<amount>0</amount>'+
-                            '<Campus>mos</Campus>'+
-                            '<Wohnort>de</Wohnort>'+
-                            '<iban>111111111111</iban>'+
-                         '</soap:getData>'+
-                      '</soapenv:Body>'+
-                   '</soapenv:Envelope>';
+                   '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
+                        '<soapenv:Header/>'+
+                            '<soapenv:Body>'+
+                                '<soap:getData>'+
+                                    '<callmethod>create</callmethod>'+
+                                    '<recievername>'+ document.getElementById("createUsername").value+'</recievername>'+
+                                    '<sendername>'+ document.getElementById("createUsername").value+'</sendername>'+
+                                    '<amount>0</amount>'+
+                                    '<campus>'+ document.getElementById("createCampus").value+'</campus>'+
+                                    '<wohnort>'+ document.getElementById("createCity").value+'</wohnort>'+
+                                    '<iban>'+ document.getElementById("createIban").value+'</iban>'+
+                                '</soap:getData>'+
+                            '</soapenv:Body>'+
+                        '</soapenv:Envelope>';
 
 
                 xmlhttp.onreadystatechange = function () {
@@ -47,7 +47,7 @@
                 xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
                 var sr =
-                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/"/>'+
+                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
                         '<soapenv:Header/>'+
                             '<soapenv:Body>'+
                                 '<soap:getData>'+
@@ -71,6 +71,7 @@
                         }
                         xmlhttp.setRequestHeader('Content-Type', 'text/xml');
                         xmlhttp.send(sr);
+                        xmlhttp.res
                     }
 
                     function loadAccount() {
@@ -78,7 +79,7 @@
                         xmlhttp.open('POST', 'http://localhost:8080/soap/mainService', true);
 
                         var sr =
-                            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/"/>'+
+                            '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap/">'+
                                 '<soapenv:Header/>'+
                                     '<soapenv:Body>'+
                                         '<soap:getData>'+
